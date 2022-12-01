@@ -39,7 +39,7 @@ The post is from 2018, but still that is exactly the Context we are using, React
 Therefore that's the second disadvantage, performance can be bad if you're managing the wrong kinds of state with React Context.
 
 ---
-## Conclusion
+## Conclusion [Use Context for Low Velocity Data & Redux for High Velocity Data]
 To sum up, we have the complex setup and management disadvantage because we may end up with deeply nested JSX code and a lot of different Context Providers or with one huge Context Provider which is not maintainable.
 
 On the other hand we have potential performance issues because we should not use React Context for high-frequency state changes. And again, emphasize that for small or medium-sized apps and even certainty a lot of big apps, this might all not matter. But if we come to Redux we won't suffer from these disadvantages.
