@@ -2,7 +2,6 @@
 ## Introduction
 We can use Redux for more large projects because React Context has a couple of potential disadvantages, and they are potential because they might not matter in the app you're building for example if the project scale is not to big (small - medium sized projects).
 
-
 An Important thing is that using Context or Redux is not an either or decision as you can use both Contexts and Redux in the same application. Redux for application wide-state, Context for selected multi-component states.
 
 ---
@@ -28,13 +27,15 @@ So you might end up with a large Context that manages authentication, theming, u
 
 
 ## [2] Performance
-**Firstly:** as a proof of concept we have an official quote by a member of the React team, who pointed out that performance issue saying that Context is great for low-frequency updates like changing a theme, or maybe also authentication, but it's not that great if your data changes a lot.
+**Firstly:** **When the state changes the Context Provider Component re-renders, as a result all of its childern are aslo re-rendered**
+
+**Secondly:** as a proof of concept we have an official quote by a member of the React team, who pointed out that performance issue saying that Context is great for low-frequency updates like changing a theme, or maybe also authentication, but it's not that great if your data changes a lot.
 
 ![1669467633319](https://user-images.githubusercontent.com/61433385/205171565-6311556e-f2f7-4d78-aeca-c187ed6e7918.png)
 
 The post is from 2018, but still that is exactly the Context we are using, React Context which was at this time which is why the post is from that date.
 
-**Secondly:** This team member says that Context is not ready as a replacement for flux like state propagation and Redux is a flux like state management library. So he says that React Context is not really a great replacement for Redux in all scenarios, in all cases.
+**Thirdly:** This team member says that Context is not ready as a replacement for flux like state propagation and Redux is a flux like state management library. So he says that React Context is not really a great replacement for Redux in all scenarios, in all cases.
 
 Therefore that's the second disadvantage, performance can be bad if you're managing the wrong kinds of state with React Context.
 
