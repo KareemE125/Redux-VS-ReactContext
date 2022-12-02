@@ -27,7 +27,32 @@ So you might end up with a large Context that manages authentication, theming, u
 
 
 ## [2] Performance
-**Firstly:** **When the state changes the Context Provider Component re-renders, as a result all of its childern are aslo re-rendered**
+**Firstly:** In react typically a component should rerender either when the props that are being passed to it changes or the state that it owns changes.
+
+One Solution is using "React.memo" for the right under the context provider, Another solution and best practise is wrapping the context provider in a wrapper component and using the "props.children" argument to render any children components. This is the main factor in preventing unnecessary re-renders, as by using "props.children", we are passing the same instance of the child components each time the wrapper component re-renders. This means that React’s shallow comparison logic will label those elements as “same” and wont render them again. The only way those child component elements will render again is if something inside the component itself causes a re-render.
+
+```
+export const AppContext = createContext(0);
+
+export default function AppContextProvider(props)
+{
+    const [list, setList] = useState([]);
+
+    function addToList (item)
+    {
+        const updatedList = [...list];
+        updatedList.push(item);
+        setList(updatedList)
+    }
+
+    return <AppContext.Provider value={{list, addToList}}>
+        {props.children}
+    </AppContext.Provider>
+}
+
+```
+
+
 
 **Secondly:** as a proof of concept we have an official quote by a member of the React team, who pointed out that performance issue saying that Context is great for low-frequency updates like changing a theme, or maybe also authentication, but it's not that great if your data changes a lot.
 
